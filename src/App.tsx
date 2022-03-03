@@ -1,4 +1,5 @@
 import React from "react";
+import { Layout } from "./components/Layout";
 import { GlobalStyle } from "./styles/global";
 
 function App(): JSX.Element {
@@ -6,7 +7,7 @@ function App(): JSX.Element {
   return (
     <>
       <GlobalStyle />
-      <h1>Dashboard</h1>
+      <Layout />
     </>
   )
 }
