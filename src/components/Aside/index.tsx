@@ -6,7 +6,7 @@ function Aside(): JSX.Element {
     <Container>
       <h1>Aside</h1>
     </Container>
-  )
+  );
 }
 
 export { Aside };

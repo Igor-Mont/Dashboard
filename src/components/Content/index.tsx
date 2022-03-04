@@ -6,7 +6,7 @@ function Content(): JSX.Element {
     <Container>
       <h1>Content</h1>
     </Container>
-  )
+  );
 }
 
 export { Content };

@@ -12,7 +12,7 @@ function App(): JSX.Element {
       <GlobalStyle />
       <Layout />
     </ThemeProvider>
-  )
+  );
 }
 
 export { App };

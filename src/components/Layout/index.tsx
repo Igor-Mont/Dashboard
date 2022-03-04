@@ -12,7 +12,7 @@ function Layout(): JSX.Element {
       <Aside />
       <Content />
     </Container>
-  )
+  );
 }
 
 export { Layout };
