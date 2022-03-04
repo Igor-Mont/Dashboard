@@ -15,8 +15,9 @@ const Toggle = styled(Switch).attrs<ReactSwitchProps>(
     onColor: theme.colors.info,
     offColor: theme.colors.warning
 
- }))<ReactSwitchProps>`
-  margin: 0 0.5rem;
+ }))
+  <ReactSwitchProps>`
+    margin: 0 0.5rem;
  `;
 
 export { Container, ToggleLabel, Toggle };
