@@ -1,14 +1,20 @@
 import { Container, TitleContainer, Controllers } from "./styles";
+import { ReactNode } from "react";
 
-function ContentHeader(): JSX.Element {
+type ContentHeaderProps = {
+  title: string;
+  lineColor: string;
+  children: ReactNode;
+}
+
+function ContentHeader({ title, lineColor, children }: ContentHeaderProps ): JSX.Element {
   return (
     <Container>
-      <TitleContainer>
-        <h1>Teste</h1>
+      <TitleContainer lineColor={lineColor}>
+        <h1>{title}</h1>
       </TitleContainer>
       <Controllers>
-        <button type="button">Botão A</button>
-        <button type="button">Botão b</button>
+        {children}
       </Controllers>
     </Container>
   );

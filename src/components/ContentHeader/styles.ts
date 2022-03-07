@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type TitleContainerProps = {
+  lineColor: string;
+}
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -8,7 +12,7 @@ const Container = styled.div`
 
 `;
 
-const TitleContainer = styled.div`
+const TitleContainer = styled.div<TitleContainerProps>`
   h1 {
     color: ${props => props.theme.colors.white};
 
@@ -16,13 +20,14 @@ const TitleContainer = styled.div`
       content: '';
       display: block;
       width: 3rem;
-      border-bottom: 10px solid ${props => props.theme.colors.warning};
+      border-bottom: 10px solid ${props => props.lineColor};
     }
   }
 `;
 
 const Controllers = styled.div`
   display: flex;
+  gap: 0.5rem;
 `;
 
 export { Container, TitleContainer, Controllers };
