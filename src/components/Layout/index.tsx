@@ -1,16 +1,24 @@
 import { Container } from './styles';
 
-import { MainHeader } from '../MainHeader'
+import { MainHeader } from '../MainHeader';
 import { Content } from '../Content'
-import { Aside } from '../Aside'
+import { Aside } from '../Aside';
+import { ReactNode } from 'react';
 
-function Layout(): JSX.Element {
+type LayoutProps = {
+  children: ReactNode;
+}
+
+
+function Layout({ children }: LayoutProps): JSX.Element {
 
   return (
     <Container>
       <MainHeader />
       <Aside />
-      <Content />
+      <Content>
+        { children }
+      </Content>
     </Container>
   );
 }

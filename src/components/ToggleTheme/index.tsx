@@ -7,7 +7,7 @@ function ToggleTheme(): JSX.Element {
       <ToggleLabel>Light</ToggleLabel>
       <Toggle
         checked={true}
-        onChange={() => console.log('')}
+        onChange={() => console.log('fn')}
         checkedIcon={false}
         uncheckedIcon={false}
       />

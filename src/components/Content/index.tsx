@@ -1,10 +1,16 @@
+import { ReactNode } from 'react';
+import { ContentHeader } from '../ContentHeader';
 import { Container } from './styles';
 
-function Content(): JSX.Element {
+type ContentProps = {
+  children: ReactNode;
+}
+
+function Content({ children }: ContentProps): JSX.Element {
 
   return (
     <Container>
-      <h1>Content</h1>
+      { children }
     </Container>
   );
 }
