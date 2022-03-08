@@ -1,15 +1,27 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ContentHeader } from "../../components/ContentHeader";
 import { HistoryFinanceCard } from "../../components/HistoryFinanceCard";
 import { SelectInput } from "../../components/SelectInput";
 import { Container, Content, Filters } from "./styles";
 
+import gains from '../../repositories/gains';
+import expenses from '../../repositories/expenses';
+
+type Data = {
+  id: string;
+  description: string;
+  amountFormatted: string;
+  frequency: string;
+  dataFormatted: string;
+  tagColor: string;
+}
+
 function List(): JSX.Element {
+  const [data, setData] = useState<Data[]>([]);
   const { type } = useParams();
 
   const title = useMemo(() => {
-
     return type === 'entry-balance' ? {
       title: 'Entradas',
       lineColor: '#F7931B'
@@ -17,8 +29,27 @@ function List(): JSX.Element {
       title: 'Saídas',
       lineColor: '#E44C4E'
     };
-
   }, [type]);
+
+  const listData = useMemo(() => {
+    return type === 'entry-balance' ? gains : expenses;
+  }, [type]);
+
+  useEffect(() => {
+    const response = listData.map(item => {
+      return {
+        id: Math.floor(Date.now() * Math.random()).toString(36),
+        description: item.description,
+        amountFormatted: item.amount,
+        frequency: item.frequency,
+        dataFormatted: item.date,
+        tagColor: item.frequency === 'recorrente' ?'#4e41f0' : '#e44c4e',
+      }
+    })
+
+    setData(response);
+  }, [listData]);
+
 
   const months = [
     {
@@ -63,12 +94,17 @@ function List(): JSX.Element {
       </Filters>
 
       <Content>
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-        />
+        {data.map(item => {
+          return (
+            <HistoryFinanceCard
+              key={item.id}
+              title={item.description}
+              subtitle={item.dataFormatted}
+              tagColor={item.tagColor}
+              amount={item.amountFormatted}
+            />
+          );
+        })}
       </Content>
     </Container>
   );
