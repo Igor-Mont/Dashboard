@@ -1,14 +1,10 @@
 import styled from "styled-components";
 
-type ContainerProps = {
-  color: string;
-}
-
 type TagProps = {
   color: string;
 }
 
-const Container = styled.li<ContainerProps>`
+const Container = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,7 +14,7 @@ const Container = styled.li<ContainerProps>`
 
   list-style: none;
   border-radius: 0.5rem;
-  background-color: ${props => props.color};
+  background-color: ${props => props.theme.colors.tertiary};
   cursor: pointer;
   transition: all .3s;
 

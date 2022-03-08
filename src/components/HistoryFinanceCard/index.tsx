@@ -1,16 +1,15 @@
 import { Container, Tag } from "./styles";
 
 type HistoryFinanceCardProps = {
-  cardColor: string;
   tagColor: string;
   title: string;
   subtitle: string;
   amount: string;
 }
 
-function HistoryFinanceCard({ amount, cardColor, subtitle, title, tagColor }: HistoryFinanceCardProps): JSX.Element {
+function HistoryFinanceCard({ amount, subtitle, title, tagColor }: HistoryFinanceCardProps): JSX.Element {
   return (
-    <Container color={cardColor}>
+    <Container>
       <Tag color={tagColor} />
       <div>
         <span>{title}</span>

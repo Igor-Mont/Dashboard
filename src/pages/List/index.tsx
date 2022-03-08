@@ -31,63 +31,6 @@ function List(): JSX.Element {
           subtitle="27/07/2020"
           tagColor="#E44C4E"
           amount="R$ 130,00"
-          cardColor="#313862"
-        />
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-          cardColor="#313862"
-        />
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-          cardColor="#313862"
-        />
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-          cardColor="#313862"
-        />
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-          cardColor="#313862"
-        />
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-          cardColor="#313862"
-        />
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-          cardColor="#313862"
-        />
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-          cardColor="#313862"
-        />
-        <HistoryFinanceCard
-          title="Conta de luz"
-          subtitle="27/07/2020"
-          tagColor="#E44C4E"
-          amount="R$ 130,00"
-          cardColor="#313862"
         />
       </Content>
     </Container>
