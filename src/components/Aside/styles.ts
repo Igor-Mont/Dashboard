@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -32,9 +33,28 @@ const Menu = styled.nav`
   flex-direction: column;
   margin-top: 3rem;
   gap: 1rem;
+
+  .menu-item-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    color: ${props => props.theme.colors.info};
+    text-decoration: none;
+
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    >svg {
+      font-size: 18px;
+    }
+  }
 `;
 
-const MenuItemLink = styled.a`
+const MenuItemLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.5rem;

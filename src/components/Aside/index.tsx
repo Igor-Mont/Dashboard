@@ -1,6 +1,7 @@
-import { Container, Header, Logo, Menu, MenuItemLink, Title } from './styles';
+import { Container, Header, Logo, MenuItemLink, Menu, Title } from './styles';
 import { MdDashboard, MdArrowDownward, MdArrowUpward, MdExitToApp } from 'react-icons/md';
 import logoIMG from '../../assets/logo.svg';
+import { Link } from 'react-router-dom';
 
 function Aside(): JSX.Element {
 
@@ -12,25 +13,25 @@ function Aside(): JSX.Element {
       </Header>
 
       <Menu>
-        <MenuItemLink href="#">
+        <MenuItemLink className='menu-item-link' to="/dashboard">
           <MdDashboard />
           Dashboard
         </MenuItemLink>
 
-        <MenuItemLink href="#">
+        <MenuItemLink className='menu-item-link' to="/list/entry-balance">
           <MdArrowUpward />
           Entradas
         </MenuItemLink>
 
-        <MenuItemLink href="#">
+        <MenuItemLink className='menu-item-link' to="/list/exit-balance">
           <MdArrowDownward />
           Saídas
         </MenuItemLink>
 
-        <MenuItemLink href="#">
+        {/* <Link to="#">
           <MdExitToApp />
           Sair
-        </MenuItemLink>
+        </Link> */}
       </Menu>
     </Container>
   );
