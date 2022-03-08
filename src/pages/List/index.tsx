@@ -1,6 +1,7 @@
 import { ContentHeader } from "../../components/ContentHeader";
+import { HistoryFinanceCard } from "../../components/HistoryFinanceCard";
 import { SelectInput } from "../../components/SelectInput";
-import { Container } from "./styles";
+import { Container, Content } from "./styles";
 
 function List(): JSX.Element {
   const optionsTest = [
@@ -23,6 +24,72 @@ function List(): JSX.Element {
       <ContentHeader title="Saídas" lineColor="#E44C4E">
         <SelectInput options={optionsTest}/>
       </ContentHeader>
+
+      <Content>
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+        <HistoryFinanceCard
+          title="Conta de luz"
+          subtitle="27/07/2020"
+          tagColor="#E44C4E"
+          amount="R$ 130,00"
+          cardColor="#313862"
+        />
+      </Content>
     </Container>
   );
 }

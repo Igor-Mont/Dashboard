@@ -9,7 +9,6 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.5rem;
-
 `;
 
 const TitleContainer = styled.div<TitleContainerProps>`
