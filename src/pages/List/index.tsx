@@ -7,6 +7,8 @@ import { Container, Content, Filters } from "./styles";
 
 import gains from '../../repositories/gains';
 import expenses from '../../repositories/expenses';
+import { formatCurrency } from "../../utils/formatCurrency";
+import { formatDate } from "../../utils/formatDate";
 
 type Data = {
   id: string;
@@ -40,9 +42,9 @@ function List(): JSX.Element {
       return {
         id: Math.floor(Date.now() * Math.random()).toString(36),
         description: item.description,
-        amountFormatted: item.amount,
+        amountFormatted: formatCurrency(Number(item.amount)),
         frequency: item.frequency,
-        dataFormatted: item.date,
+        dataFormatted: formatDate(item.date),
         tagColor: item.frequency === 'recorrente' ?'#4e41f0' : '#e44c4e',
       }
     })
