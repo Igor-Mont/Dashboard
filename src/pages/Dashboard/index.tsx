@@ -1,11 +1,14 @@
 import { ContentHeader } from "../../components/ContentHeader";
 import { Container, Content } from "./styles";
 import { SelectInput } from "../../components/SelectInput";
+import happyImg from '../../assets/happy.svg';
+import sadImg from '../../assets/sad.svg';
 import { WalletBox } from '../../components/WalletBox';
 import { useMemo, useState } from "react";
 import { months as listOfMonths } from "../../utils/months";
 import gains from '../../repositories/gains';
 import expenses from '../../repositories/expenses';
+import { MessageBox } from "../../components/MessageBox";
 
 function Dashboard(): JSX.Element {
   const [monthSelected, setMonthSelected] = useState(Number(new Date().getMonth() + 1));
@@ -71,6 +74,12 @@ function Dashboard(): JSX.Element {
           footerLabel="atualizado com base nas entradas e saídas"
           icon="arrowDown"
           color="#e44c4e"
+        />
+        <MessageBox
+          title="Muito bem!"
+          description='Sua carteira está positiva'
+          icon={happyImg}
+          footerText="Continue assim. Considere investir o seu saldo."
         />
       </Content>
     </Container>
