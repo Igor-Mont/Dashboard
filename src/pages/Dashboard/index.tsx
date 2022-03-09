@@ -10,6 +10,7 @@ import { months as listOfMonths } from "../../utils/months";
 import gains from '../../repositories/gains';
 import expenses from '../../repositories/expenses';
 import { MessageBox } from "../../components/MessageBox";
+import { PieChartBox } from "../../components/PieChart";
 
 function Dashboard(): JSX.Element {
   const [monthSelected, setMonthSelected] = useState(Number(new Date().getMonth() + 1));
@@ -116,6 +117,31 @@ function Dashboard(): JSX.Element {
     }
   }, [totalBalance]);
 
+  const relationExpensiveVersusGains = useMemo(() => {
+    const total = totalGains + totalExpenses;
+
+    const percentGains = (totalGains / total) * 100;
+    const percentExpenses = (totalExpenses / total) * 100;
+
+    const data = [
+      {
+        name: 'Entradas',
+        value: totalExpenses,
+        percent: Number(percentGains.toFixed(1)),
+        color: '#f7931b'
+      },
+      {
+        name: 'Saídas',
+        value: totalGains,
+        percent: Number(percentExpenses.toFixed(1)),
+        color: '#e44c4e'
+      }
+    ];
+
+    return data;
+
+  }, [totalGains, totalExpenses]);
+
   return (
     <Container>
       <ContentHeader title="Dashboard" lineColor="#F7931B">
@@ -150,6 +176,7 @@ function Dashboard(): JSX.Element {
           icon={message?.icon}
           footerText={message?.footerText}
         />
+        <PieChartBox data={relationExpensiveVersusGains} /> 
       </Content>
     </Container>
   );
