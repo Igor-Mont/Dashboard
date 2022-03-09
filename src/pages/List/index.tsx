@@ -1,28 +1,32 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { ContentHeader } from "../../components/ContentHeader";
 import { HistoryFinanceCard } from "../../components/HistoryFinanceCard";
 import { SelectInput } from "../../components/SelectInput";
-import { Container, Content, Filters } from "./styles";
+
 import { months as listOfMonths } from '../../utils/months';
+import { formatDate } from "../../utils/formatDate";
+import { formatCurrency } from "../../utils/formatCurrency";
+
 import gains from '../../repositories/gains';
 import expenses from '../../repositories/expenses';
-import { formatCurrency } from "../../utils/formatCurrency";
-import { formatDate } from "../../utils/formatDate";
+
+import { Container, Content, Filters } from "./styles";
 
 type Data = {
   id: string;
   description: string;
   amountFormatted: string;
   frequency: string;
-  dataFormatted: string;
+  dateFormatted: string;
   tagColor: string;
 }
 
 function List(): JSX.Element {
   const [data, setData] = useState<Data[]>([]);
   const [monthSelected, setMonthSelected] = useState(String(new Date().getMonth() + 1));
-  const [yearSelected, setYearSelected] = useState(String(new Date().getFullYear() - 2));
+  const [yearSelected, setYearSelected] = useState(String(new Date().getFullYear()));
   const [selectedFrequency, setSelectFrequency] = useState(['recorrente', 'eventual']);
 
   function handleFrequencyClick(frequency: string) {
@@ -36,22 +40,21 @@ function List(): JSX.Element {
     }
   }
 
-
   const { type } = useParams();
 
-  const title = useMemo(() => {
+  const pageData = useMemo(() => {
     return type === 'entry-balance' ? {
       title: 'Entradas',
-      lineColor: '#F7931B'
+      lineColor: '#F7931B',
+      listData: gains
     } : {
       title: 'Saídas',
-      lineColor: '#E44C4E'
+      lineColor: '#E44C4E',
+      listData: expenses
     };
   }, [type]);
 
-  const listData = useMemo(() => {
-    return type === 'entry-balance' ? gains : expenses;
-  }, [type]);
+  const { lineColor, listData, title } = pageData;
 
   useEffect(() => {
     const filteredPerDate = listData.filter(item => {
@@ -68,7 +71,7 @@ function List(): JSX.Element {
         description: item.description,
         amountFormatted: formatCurrency(Number(item.amount)),
         frequency: item.frequency,
-        dataFormatted: formatDate(item.date),
+        dateFormatted: formatDate(item.date),
         tagColor: item.frequency === 'recorrente' ? '#4e41f0' : '#e44c4e',
       }
     })
@@ -111,8 +114,8 @@ function List(): JSX.Element {
 
   return (
     <Container>
-      <ContentHeader title={title.title} lineColor={title.lineColor}>
-        <SelectInput options={months} onChange={e => setMonthSelected(e.target.value)} defaultValue={monthSelected} />
+      <ContentHeader title={title} lineColor={lineColor}>
+        <SelectInput  options={months} onChange={e => setMonthSelected(e.target.value)} defaultValue={monthSelected} />
         <SelectInput options={years} onChange={e => setYearSelected(e.target.value)} defaultValue={yearSelected}/>
       </ContentHeader>
 
@@ -139,7 +142,7 @@ function List(): JSX.Element {
             <HistoryFinanceCard
               key={item.id}
               title={item.description}
-              subtitle={item.dataFormatted}
+              subtitle={item.dateFormatted}
               tagColor={item.tagColor}
               amount={item.amountFormatted}
             />
