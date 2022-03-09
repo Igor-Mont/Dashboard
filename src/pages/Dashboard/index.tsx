@@ -1,6 +1,7 @@
 import { ContentHeader } from "../../components/ContentHeader";
-import { Container } from "./styles";
+import { Container, Content } from "./styles";
 import { SelectInput } from "../../components/SelectInput";
+import { WalletBox } from '../../components/WalletBox';
 import { useMemo, useState } from "react";
 import { months as listOfMonths } from "../../utils/months";
 import gains from '../../repositories/gains';
@@ -49,6 +50,29 @@ function Dashboard(): JSX.Element {
         <SelectInput  options={months} onChange={e => setMonthSelected(Number(e.target.value))} defaultValue={monthSelected} />
         <SelectInput options={years} onChange={e => setYearSelected(Number(e.target.value))} defaultValue={yearSelected}/>
       </ContentHeader>
+      <Content>
+        <WalletBox 
+          title="saldo"
+          amount={150.00}
+          footerLabel="atualizado com base nas entradas e saídas"
+          icon="dollar"
+          color="#4e41f0"
+        />
+        <WalletBox 
+          title="entradas"
+          amount={5000}
+          footerLabel="atualizado com base nas entradas e saídas"
+          icon="arrowUp"
+          color="#f7931b"
+        />
+        <WalletBox 
+          title="saldo"
+          amount={4850.00}
+          footerLabel="atualizado com base nas entradas e saídas"
+          icon="arrowDown"
+          color="#e44c4e"
+        />
+      </Content>
     </Container>
   );
 }
