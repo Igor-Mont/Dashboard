@@ -22,7 +22,7 @@ function Dashboard(): JSX.Element {
   return (
     <Container>
       <ContentHeader title="Dashboard" lineColor="#F7931B">
-        <SelectInput options={optionsTest}/>
+        <SelectInput options={optionsTest} onChange={e => {}} />
       </ContentHeader>
     </Container>
   );

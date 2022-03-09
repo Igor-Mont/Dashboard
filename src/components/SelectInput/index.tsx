@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container } from './styles';
 
 type Option = {
@@ -7,14 +8,16 @@ type Option = {
 
 type SelectInputProps = {
   options: Option[];
+  onChange(event: React.ChangeEvent<HTMLSelectElement>): void | undefined;
+  defaultValue?: string | number;
 }
 
-function SelectInput({ options }: SelectInputProps): JSX.Element {
+function SelectInput({ options, onChange, defaultValue }: SelectInputProps): JSX.Element {
   return (
     <Container>
-      <select>
+      <select onChange={onChange} defaultValue={defaultValue}>
         {options.map(option => (
-          <option key={option.value} value={option.value}>{option.value}</option>
+          <option key={option.value} value={option.value}>{option.label}</option>
         ))}
       </select>
     </Container>
