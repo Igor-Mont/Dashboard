@@ -4,7 +4,7 @@ import { ContentHeader } from "../../components/ContentHeader";
 import { HistoryFinanceCard } from "../../components/HistoryFinanceCard";
 import { SelectInput } from "../../components/SelectInput";
 import { Container, Content, Filters } from "./styles";
-
+import { months as listOfMonths } from '../../utils/months';
 import gains from '../../repositories/gains';
 import expenses from '../../repositories/expenses';
 import { formatCurrency } from "../../utils/formatCurrency";
@@ -21,8 +21,8 @@ type Data = {
 
 function List(): JSX.Element {
   const [data, setData] = useState<Data[]>([]);
-  const [monthSelected, setMonthSelected] = useState(String(new Date().getMonth() + 1))
-  const [yearSelected, setYearSelected] = useState(String(new Date().getFullYear()))
+  const [monthSelected, setMonthSelected] = useState(String(new Date().getMonth() + 1));
+  const [yearSelected, setYearSelected] = useState(String(new Date().getFullYear() - 2));
 
   const { type } = useParams();
 
@@ -68,36 +68,37 @@ function List(): JSX.Element {
     console.log('formated', formattedData)
   }, [listData, monthSelected, yearSelected]);
 
+  const months = useMemo(() => {
 
-  const months = [
-    {
-      value: 7,
-      label: 'Julho'
-    },
-    {
-      value: 8,
-      label: 'Agosto'
-    },
-    {
-      value: 9,
-      label: 'Setembro'
-    },
-  ];
+    return listOfMonths.map((month, index) => {
+      return {
+        value: index + 1,
+        label: month,
+      }
+    })
+  }, []);
 
-  const years = [
-    {
-      value: 2020,
-      label: 2020
-    },
-    {
-      value: 2019,
-      label: 2019
-    },
-    {
-      value: 2018,
-      label: 2018
-    },
-  ];
+  const years = useMemo(() => {
+    let uniqueYears: number[] = [];
+
+    listData.forEach(item => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+
+      if (!uniqueYears.includes(year)) {
+        uniqueYears.push(year);
+      }
+    });
+
+    return uniqueYears.map(year => {
+
+      return {
+        value: year,
+        label: year,
+      }
+    });
+    
+  }, [listData]);
 
   return (
     <Container>
