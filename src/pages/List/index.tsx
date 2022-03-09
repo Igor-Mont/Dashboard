@@ -25,8 +25,8 @@ type Data = {
 
 function List(): JSX.Element {
   const [data, setData] = useState<Data[]>([]);
-  const [monthSelected, setMonthSelected] = useState(String(new Date().getMonth() + 1));
-  const [yearSelected, setYearSelected] = useState(String(new Date().getFullYear()));
+  const [monthSelected, setMonthSelected] = useState(Number(new Date().getMonth() + 1));
+  const [yearSelected, setYearSelected] = useState(Number(new Date().getFullYear()));
   const [selectedFrequency, setSelectFrequency] = useState(['recorrente', 'eventual']);
 
   function handleFrequencyClick(frequency: string) {
@@ -45,7 +45,7 @@ function List(): JSX.Element {
   const pageData = useMemo(() => {
     return type === 'entry-balance' ? {
       title: 'Entradas',
-      lineColor: '#F7931B',
+      lineColor: '#4e41f0',
       listData: gains
     } : {
       title: 'Saídas',
@@ -59,8 +59,8 @@ function List(): JSX.Element {
   useEffect(() => {
     const filteredPerDate = listData.filter(item => {
       const date = new Date(item.date);
-      const month = String(date.getMonth() + 1);
-      const year = String(date.getFullYear());
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
 
       return month === monthSelected && year === yearSelected && selectedFrequency.includes(item.frequency);
     });
@@ -115,8 +115,8 @@ function List(): JSX.Element {
   return (
     <Container>
       <ContentHeader title={title} lineColor={lineColor}>
-        <SelectInput  options={months} onChange={e => setMonthSelected(e.target.value)} defaultValue={monthSelected} />
-        <SelectInput options={years} onChange={e => setYearSelected(e.target.value)} defaultValue={yearSelected}/>
+        <SelectInput  options={months} onChange={e => setMonthSelected(Number(e.target.value))} defaultValue={monthSelected} />
+        <SelectInput options={years} onChange={e => setYearSelected(Number(e.target.value))} defaultValue={yearSelected}/>
       </ContentHeader>
 
       <Filters>
