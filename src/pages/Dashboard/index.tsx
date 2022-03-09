@@ -2,6 +2,7 @@ import { ContentHeader } from "../../components/ContentHeader";
 import { Container, Content } from "./styles";
 import { SelectInput } from "../../components/SelectInput";
 import happyImg from '../../assets/happy.svg';
+import grinningImg from '../../assets/grinning.svg';
 import sadImg from '../../assets/sad.svg';
 import { WalletBox } from '../../components/WalletBox';
 import { useMemo, useState } from "react";
@@ -46,6 +47,74 @@ function Dashboard(): JSX.Element {
     
   }, []);
 
+  const totalExpenses = useMemo(() => {
+    let total: number = 0;
+
+    expenses.forEach(item => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
+      if (month === monthSelected && year === yearSelected) {
+        try {
+          total += Number(item.amount)
+        } catch {
+          throw new Error("Invalid amount! Amount must be number");
+        }
+      }
+    });
+
+    return total;
+  }, [monthSelected, yearSelected]);
+
+  const totalGains = useMemo(() => {
+    let total: number = 0;
+
+    gains.forEach(item => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
+      if (month === monthSelected && year === yearSelected) {
+        try {
+          total += Number(item.amount)
+        } catch {
+          throw new Error("Invalid amount! Amount must be number");
+        }
+      }
+    });
+    
+    return total;
+  }, [monthSelected, yearSelected]);
+
+  const totalBalance = useMemo(() => totalGains - totalExpenses, [totalGains, totalExpenses]);
+
+  const message = useMemo(() => {
+    if(totalBalance < 0) {
+      return {
+        title: "Que Triste!",
+        description: 'Neste mês, você gastou mais do que deveria.',
+        icon: sadImg,
+        footerText: "Verifique seus gastos!",
+      }
+    }
+    else if(totalBalance === 0) {
+      return {
+        title: "Ufa!",
+        description: 'Neste mês, você gastou exatamente o que ganhou.',
+        icon: grinningImg,
+        footerText: "Cuidado com os gastos!",
+      }
+    }
+    else {
+      return {
+        title: "Muito bem!",
+        description: 'Sua carteira está positiva',
+        icon: happyImg,
+        footerText: "Continue assim. Considere investir o seu saldo.",
+      };
+    }
+  }, [totalBalance]);
 
   return (
     <Container>
@@ -56,30 +125,30 @@ function Dashboard(): JSX.Element {
       <Content>
         <WalletBox 
           title="saldo"
-          amount={150.00}
+          amount={totalBalance}
           footerLabel="atualizado com base nas entradas e saídas"
           icon="dollar"
           color="#4e41f0"
         />
         <WalletBox 
           title="entradas"
-          amount={5000}
+          amount={totalGains}
           footerLabel="atualizado com base nas entradas e saídas"
           icon="arrowUp"
           color="#f7931b"
         />
         <WalletBox 
-          title="saldo"
-          amount={4850.00}
+          title="saídas"
+          amount={totalExpenses}
           footerLabel="atualizado com base nas entradas e saídas"
           icon="arrowDown"
           color="#e44c4e"
         />
         <MessageBox
-          title="Muito bem!"
-          description='Sua carteira está positiva'
-          icon={happyImg}
-          footerText="Continue assim. Considere investir o seu saldo."
+          title={message?.title}
+          description={message?.description}
+          icon={message?.icon}
+          footerText={message?.footerText}
         />
       </Content>
     </Container>
