@@ -17,7 +17,6 @@ function MessageBox({ description, footerText, icon, title }: MessageBoxProps): 
         </h1>
         <p>{description}</p>
       </header>
-
       <footer>
           <span>{footerText}</span>
         </footer>
