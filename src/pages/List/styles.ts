@@ -20,6 +20,8 @@ const Filters = styled.div`
     margin: 0 0 2.5rem 0.5rem;
     transition: opacity .3s;
 
+    opacity: 0.3;
+
     &:hover {
       opacity: 0.7;
     }
@@ -39,6 +41,10 @@ const Filters = styled.div`
       margin: 0 auto;
       border-bottom: 10px solid ${props => props.theme.colors.warning};
     }
+  }
+
+  .tag-active {
+    opacity: 1;
   }
 `;
 
