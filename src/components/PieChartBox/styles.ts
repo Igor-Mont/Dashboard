@@ -58,7 +58,7 @@ const Legend = styled.li<LegendProps>`
     width: 40px;
     height: 40px;
     border-radius: 0.3rem;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     line-height: 40px;
     text-align: center;
   }

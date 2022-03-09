@@ -6,11 +6,12 @@ import grinningImg from '../../assets/grinning.svg';
 import sadImg from '../../assets/sad.svg';
 import { WalletBox } from '../../components/WalletBox';
 import { useMemo, useState } from "react";
+import { HistoryBox } from "../../components/HistoryBox";
 import { months as listOfMonths } from "../../utils/months";
 import gains from '../../repositories/gains';
 import expenses from '../../repositories/expenses';
 import { MessageBox } from "../../components/MessageBox";
-import { PieChartBox } from "../../components/PieChart";
+import { PieChartBox } from "../../components/PieChartBox";
 
 function Dashboard(): JSX.Element {
   const [monthSelected, setMonthSelected] = useState(Number(new Date().getMonth() + 1));
@@ -142,6 +143,55 @@ function Dashboard(): JSX.Element {
 
   }, [totalGains, totalExpenses]);
 
+  const historyData = useMemo(() => {
+    return listOfMonths.map((_, index) => {
+      let amountEntry = 0
+
+      gains.forEach(gain => {
+        const date = new Date(gain.date);
+        const gainMonth = date.getMonth();
+        const gainYear = date.getFullYear();
+
+        if (gainMonth === index && gainYear === yearSelected) {
+          try {
+            amountEntry += Number(gain.amount)
+          }catch {
+            throw new Error("amountEntry must be number");
+          }
+        }
+      });
+
+      let amountOutput = 0
+      expenses.forEach(expense => {
+        const date = new Date(expense.date);
+        const expenseMonth = date.getMonth();
+        const expenseYear = date.getFullYear();
+
+        if (expenseMonth === index && expenseYear === yearSelected) {
+          try {
+            amountOutput += Number(expense.amount)
+          }catch {
+            throw new Error("amountEntry must be number");
+          }
+        }
+      });
+
+      return {
+        monthNumber: index,
+        month: listOfMonths[index].substring(0, 3),
+        amountEntry,
+        amountOutput
+      }
+
+    }).filter(item => {
+        const currentMonth = new Date().getMonth() + 2; // + 2 to more months (development)
+        const currentYear = new Date().getFullYear();
+
+        return (yearSelected === currentYear && item.monthNumber <= currentMonth) || yearSelected < currentYear;
+
+    })
+  }, [yearSelected]);
+
   return (
     <Container>
       <ContentHeader title="Dashboard" lineColor="#F7931B">
@@ -176,7 +226,8 @@ function Dashboard(): JSX.Element {
           icon={message?.icon}
           footerText={message?.footerText}
         />
-        <PieChartBox data={relationExpensiveVersusGains} /> 
+        <PieChartBox data={relationExpensiveVersusGains} />
+        <HistoryBox data={historyData} lineColorAmountEntry="#f7931b" lineColorAmountOutput="#e44c4e" />
       </Content>
     </Container>
   );

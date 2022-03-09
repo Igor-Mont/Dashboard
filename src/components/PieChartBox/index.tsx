@@ -19,7 +19,7 @@ function PieChartBox({ data }: PieChartProps): JSX.Element {
           {data.map(indicator => {
             return (
               <Legend key={indicator.name} color={indicator.color}>
-                <div>{indicator.percent}</div>
+                <div>{indicator.percent}%</div>
                 <span>{indicator.name}</span>
               </Legend>
             );
