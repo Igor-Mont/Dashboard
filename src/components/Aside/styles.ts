@@ -73,4 +73,24 @@ const MenuItemLink = styled(Link)`
   }
 `;
 
-export { Container, Header, Logo, Menu, MenuItemLink, Title };
+const MenuItemButton = styled.button`
+  font-size: 16px;
+  color: ${props => props.theme.colors.info};
+  
+  border: none;
+  background: none;
+  margin: 7px 0;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s;
+
+  &:hover {
+      opacity: 0.7;
+  }
+  > svg {
+      font-size: 18px;
+      margin-right: 5px;
+  }
+`;
+
+export { Container, Header, Logo, Menu, MenuItemLink, Title, MenuItemButton };

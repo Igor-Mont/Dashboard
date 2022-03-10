@@ -1,9 +1,12 @@
-import { Container, Header, Logo, MenuItemLink, Menu, Title } from './styles';
+import { Container, Header, Logo, MenuItemLink, Menu, Title, MenuItemButton } from './styles';
 import { MdDashboard, MdArrowDownward, MdArrowUpward, MdExitToApp } from 'react-icons/md';
 import logoIMG from '../../assets/logo.svg';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 function Aside(): JSX.Element {
+
+  const { signOut } = useContext(AuthContext);
 
   return (
     <Container>
@@ -13,25 +16,25 @@ function Aside(): JSX.Element {
       </Header>
 
       <Menu>
-        <MenuItemLink className='menu-item-link' to="/dashboard">
+        <MenuItemLink to="/dashboard">
           <MdDashboard />
           Dashboard
         </MenuItemLink>
 
-        <MenuItemLink className='menu-item-link' to="/list/entry-balance">
+        <MenuItemLink to="/list/entry-balance">
           <MdArrowUpward />
           Entradas
         </MenuItemLink>
 
-        <MenuItemLink className='menu-item-link' to="/list/exit-balance">
+        <MenuItemLink to="/list/exit-balance">
           <MdArrowDownward />
           Saídas
         </MenuItemLink>
 
-        {/* <Link to="#">
+        <MenuItemButton onClick={signOut}>
           <MdExitToApp />
           Sair
-        </Link> */}
+        </MenuItemButton>
       </Menu>
     </Container>
   );

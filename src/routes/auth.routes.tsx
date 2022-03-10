@@ -2,16 +2,14 @@ import { Routes, Route} from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import { Dashboard } from '../pages/Dashboard';
 import { List } from '../pages/List';
+import { SingIn } from '../pages/SingIn';
 
-function AppRoutes(): JSX.Element {
+function AuthRoutes(): JSX.Element {
   return (
-    <Layout>
       <Routes>
-        <Route path="/" element={<Dashboard />}/>
-        <Route path="/list/:type" element={<List />} />
+        <Route path="/" element={<SingIn />}/>
       </Routes>
-    </Layout>
   );
 }
 
-export { AppRoutes };
+export { AuthRoutes };
