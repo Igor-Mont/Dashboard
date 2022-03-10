@@ -14,10 +14,7 @@ const Container = styled.div`
 `;
 
 const Profile = styled.div`
-  color: ${props => props.theme.colors.white}
-  
+  color: ${props => props.theme.colors.white};
 `;
-
-
 
 export { Container, Profile };

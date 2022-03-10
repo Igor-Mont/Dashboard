@@ -1,8 +1,8 @@
 import { useContext, useMemo, useState } from 'react';
 import { Container, Profile } from './styles';
 import { emojis } from '../../utils/emojis';
-
 import { ToggleTheme } from '../ToggleTheme';
+
 import { ThemeSwitcherContext } from '../../contexts/ThemeSwitcherContext';
 
 function MainHeader(): JSX.Element {

@@ -3,7 +3,7 @@ import { ResponsiveContainer, BarChart, Bar, Cell, Tooltip } from 'recharts';
 import { ReactText } from "react";
 import { formatCurrency } from "../../utils/formatCurrency";
 
-type BarChatBoxProps = {
+type BarChartBoxProps = {
   title: string;
   data: {
     name: string;
@@ -13,7 +13,7 @@ type BarChatBoxProps = {
   }[];
 }
 
-function BarChatBox({ data, title }: BarChatBoxProps): JSX.Element {
+function BarChartBox({ data, title }: BarChartBoxProps): JSX.Element {
   return (
     <Container>
       <SideLeft>
@@ -53,4 +53,4 @@ function BarChatBox({ data, title }: BarChatBoxProps): JSX.Element {
   );
 }
 
-export { BarChatBox };
+export { BarChartBox };

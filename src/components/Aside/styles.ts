@@ -1,13 +1,40 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Container = styled.div`
+type ContainerProps = {
+  menuIsOpen: boolean;
+}
+
+type FooterProps = {
+  menuIsOpen: boolean;
+}
+
+const Container = styled.div<ContainerProps>`
   grid-area: AS;
   background-color: ${props => props.theme.colors.secondary};
 
   padding-left: 1.25rem;
 
-  border-right: 1px solid ${props => props.theme.colors.gray} ;
+  border-right: 1px solid ${props => props.theme.colors.gray};
+
+  position: relative;
+
+  @media(max-width: 600px) {
+    padding-left: 0.5rem;
+    position: fixed;
+    z-index: 2;
+
+    width: 170px;
+
+    height: ${props => props.menuIsOpen ? '100vh' : '70px'};
+
+    ${props => !props.menuIsOpen && css`
+      border: none;
+      border-bottom: 1px solid ${props => props.theme.colors.gray};
+    `};
+
+    overflow: hidden;
+  }
 `;
 
 const Header = styled.header`
@@ -22,36 +49,26 @@ const Header = styled.header`
 const Logo = styled.img`
   width: 40px;
   height: 40px;
+
+  @media(max-width: 600px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h3`
   color: ${props => props.theme.colors.white};
+
+  @media(max-width: 600px) {
+    display: none;
+  }
 `;
 
 const Menu = styled.nav`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin-top: 3rem;
-  gap: 1rem;
-
-  .menu-item-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    color: ${props => props.theme.colors.info};
-    text-decoration: none;
-
-    transition: opacity 0.3s;
-
-    &:hover {
-      opacity: 0.7;
-    }
-
-    >svg {
-      font-size: 18px;
-    }
-  }
+  gap: 2rem;
 `;
 
 const MenuItemLink = styled(Link)`
@@ -88,9 +105,46 @@ const MenuItemButton = styled.button`
       opacity: 0.7;
   }
   > svg {
-      font-size: 18px;
-      margin-right: 5px;
+    font-size: 18px;
+    margin-right: 5px;
   }
 `;
 
-export { Container, Header, Logo, Menu, MenuItemLink, Title, MenuItemButton };
+const ToggleMenu = styled.button`
+    width: 40px;
+    height: 40px;
+    display: flex;
+
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+    background-color: ${props => props.theme.colors.warning};
+    color: ${props => props.theme.colors.white};
+
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    display: none;
+
+    @media(max-width: 600px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+    }
+
+`;
+
+const ThemeToggleFooter = styled.footer<FooterProps>`
+  display: none;
+  position: absolute;
+  bottom: 30px;
+
+  @media(max-width: 470px) {
+    display: ${props => props.menuIsOpen ? 'flex' : 'none'}
+  }
+`;
+
+export { Container, Header, Logo, Menu, MenuItemLink, Title, MenuItemButton, ToggleMenu, ThemeToggleFooter };

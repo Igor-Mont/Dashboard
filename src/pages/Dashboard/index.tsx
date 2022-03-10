@@ -12,7 +12,7 @@ import gains from '../../repositories/gains';
 import expenses from '../../repositories/expenses';
 import { MessageBox } from "../../components/MessageBox";
 import { PieChartBox } from "../../components/PieChartBox";
-import { BarChatBox } from "../../components/BarChatBox";
+import { BarChartBox } from "../../components/BarChartBox";
 
 function Dashboard(): JSX.Element {
   const [monthSelected, setMonthSelected] = useState(Number(new Date().getMonth() + 1));
@@ -313,8 +313,8 @@ function Dashboard(): JSX.Element {
         />
         <PieChartBox data={relationExpensiveVersusGains} />
         <HistoryBox data={historyData} lineColorAmountEntry="#f7931b" lineColorAmountOutput="#e44c4e" />
-        <BarChatBox data={relationExpensevesRecurrentVersusEventual} title="Saídas" />
-        <BarChatBox data={relationGainsRecurrentVersusEventual} title="Entradas" />
+        <BarChartBox data={relationExpensevesRecurrentVersusEventual} title="Saídas" />
+        <BarChartBox data={relationGainsRecurrentVersusEventual} title="Entradas" />
       </Content>
     </Container>
   );
