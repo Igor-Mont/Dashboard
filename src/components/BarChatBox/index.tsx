@@ -8,7 +8,7 @@ type BarChatBoxProps = {
   data: {
     name: string;
     amount: number;
-    percent: string;
+    percent: number;
     color: string;
   }[];
 }
@@ -32,7 +32,7 @@ function BarChatBox({ data, title }: BarChatBoxProps): JSX.Element {
       <SideRight>
         <ResponsiveContainer>
           <BarChart data={data}>
-            <Bar dataKey='amount'>
+            <Bar dataKey='amount' name="Valor">
               {data.map(indicator => {
                 return (
                   <Cell
@@ -42,7 +42,10 @@ function BarChatBox({ data, title }: BarChatBoxProps): JSX.Element {
                 )
               })}
             </Bar>
-            {/* <Tooltip formatter={(value: string | Number | ReactText) => formatCurrency(Number(value))} /> */}
+            <Tooltip 
+              cursor={{ fill: 'none' }}
+              formatter={(value: string | Number | ReactText) => formatCurrency(Number(value))} 
+            />
           </BarChart>
         </ResponsiveContainer>
       </SideRight>
