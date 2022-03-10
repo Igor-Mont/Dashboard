@@ -12,6 +12,7 @@ import gains from '../../repositories/gains';
 import expenses from '../../repositories/expenses';
 import { MessageBox } from "../../components/MessageBox";
 import { PieChartBox } from "../../components/PieChartBox";
+import { BarChatBox } from "../../components/BarChatBox";
 
 function Dashboard(): JSX.Element {
   const [monthSelected, setMonthSelected] = useState(Number(new Date().getMonth() + 1));
@@ -192,6 +193,84 @@ function Dashboard(): JSX.Element {
     })
   }, [yearSelected]);
 
+  const relationExpensevesRecurrentVersusEventual = useMemo(() => {
+    let amountRecurrent = 0;
+    let amountEventual = 0;
+
+    expenses.filter(expense => {
+      const date = new Date(expense.date);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
+      return month === monthSelected && year === yearSelected
+    }).forEach(expense => {
+      if(expense.frequency === 'recorrente'){
+        return amountRecurrent += Number(expense.amount)
+      }
+
+      if(expense.frequency === 'eventual'){
+        return amountEventual += Number(expense.amount)
+      }
+    });
+
+    const total = amountRecurrent + amountEventual;
+
+    return [
+      {
+        name: 'Recorrentes',
+        amount: amountRecurrent,
+        percent: Number((amountRecurrent/total) * 100).toFixed(1),
+        color: '#f7931b'
+      },
+      {
+        name: 'Eventuais',
+        amount: amountEventual,
+        percent: Number((amountEventual/total) * 100).toFixed(1),
+        color: '#e44c4e'
+      }
+    ];
+
+  }, [monthSelected, yearSelected]);
+
+  const relationGainsRecurrentVersusEventual = useMemo(() => {
+    let amountRecurrent = 0;
+    let amountEventual = 0;
+
+    gains.filter(gain => {
+      const date = new Date(gain.date);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
+      return month === monthSelected && year === yearSelected
+    }).forEach(gain => {
+      if(gain.frequency === 'recorrente'){
+        return amountRecurrent += Number(gain.amount)
+      }
+
+      if(gain.frequency === 'eventual'){
+        return amountEventual += Number(gain.amount)
+      }
+    });
+
+    const total = amountRecurrent + amountEventual;
+
+    return [
+      {
+        name: 'Recorrentes',
+        amount: amountRecurrent,
+        percent: Number((amountRecurrent/total) * 100).toFixed(1),
+        color: '#f7931b'
+      },
+      {
+        name: 'Eventuais',
+        amount: amountEventual,
+        percent: Number((amountEventual/total) * 100).toFixed(1),
+        color: '#e44c4e'
+      }
+    ];
+
+  }, [monthSelected, yearSelected]);
+
   return (
     <Container>
       <ContentHeader title="Dashboard" lineColor="#F7931B">
@@ -228,6 +307,8 @@ function Dashboard(): JSX.Element {
         />
         <PieChartBox data={relationExpensiveVersusGains} />
         <HistoryBox data={historyData} lineColorAmountEntry="#f7931b" lineColorAmountOutput="#e44c4e" />
+        <BarChatBox data={relationExpensevesRecurrentVersusEventual} title="Saídas" />
+        <BarChatBox data={relationGainsRecurrentVersusEventual} title="Entradas" />
       </Content>
     </Container>
   );

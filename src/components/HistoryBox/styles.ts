@@ -18,8 +18,6 @@ const Container = styled.div`
   padding: 30px 20px ;
 
   border-radius: 0.5rem;
-
-  
 `;
 
 const ChartContainer = styled.div`

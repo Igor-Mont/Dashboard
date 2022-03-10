@@ -1,5 +1,7 @@
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip, CartesianGrid } from 'recharts';
 import { Container, ChartContainer, Header, Legend, LegendContainer } from './styles';
+import { formatCurrency } from '../../utils/formatCurrency';
+import { ReactText } from 'react';
 
 type HistoryBox = {
   data: {
@@ -27,13 +29,13 @@ function HistoryBox({ data, lineColorAmountEntry, lineColorAmountOutput }: Histo
           </Legend>
         </LegendContainer>
       </Header>
-
+      
       <ChartContainer>
         <ResponsiveContainer>
           <LineChart data={data} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray='3 3' stroke="#ececec" />
             <XAxis dataKey='month' stroke='#ececec' />
-            <Tooltip />
+            <Tooltip formatter={(value: string | Number | ReactText) => formatCurrency(Number(value))} />
             <Line
               type='monotone'
               dataKey='amountEntry'
