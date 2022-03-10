@@ -1,17 +1,24 @@
 import { Container, ToggleLabel, Toggle } from './styles';
 
-function ToggleTheme(): JSX.Element {
+type ToggleThemeProps = {
+  labelLeft: string;
+  labelRight: string;
+  checked: boolean;
+  onChange(): void;
+}
+
+function ToggleTheme({ checked, labelLeft, labelRight, onChange }: ToggleThemeProps): JSX.Element {
 
   return (
     <Container>
-      <ToggleLabel>Light</ToggleLabel>
+      <ToggleLabel>{labelLeft}</ToggleLabel>
       <Toggle
-        checked={true}
-        onChange={() => console.log('fn')}
+        checked={checked}
+        onChange={onChange}
         checkedIcon={false}
         uncheckedIcon={false}
       />
-      <ToggleLabel>Dark</ToggleLabel>
+      <ToggleLabel>{labelRight}</ToggleLabel>
     </Container>
   );
 }
