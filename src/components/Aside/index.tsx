@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ThemeSwitcherContext } from '../../contexts/ThemeSwitcherContext';
 import { ToggleTheme } from '../ToggleTheme';
+import { Link } from 'react-router-dom';
 
 function Aside(): JSX.Element {
   const [menuIsOpened, setMenuIsOpened] = useState(false);
@@ -52,7 +53,7 @@ function Aside(): JSX.Element {
 
         <MenuItemButton onClick={signOut}>
           <MdExitToApp />
-          Sair
+          <Link to="/">Sair</Link>
         </MenuItemButton>
       </Menu>
 

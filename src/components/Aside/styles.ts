@@ -100,6 +100,11 @@ const MenuItemButton = styled.button`
   display: flex;
   align-items: center;
   transition: opacity 0.3s;
+  
+  >a {
+    color: ${props => props.theme.colors.info};
+    text-decoration: none;
+  }
 
   &:hover {
       opacity: 0.7;
