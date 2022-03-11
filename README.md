@@ -28,28 +28,28 @@
 
 - SingIn
 <div>
-  <img width="415" src="./assets/loginDark.png" />
-  <img width="415" src="./assets/loginLight.png" />
+  <img width="400" src="./assets/loginDark.png" />
+  <img width="400" src="./assets/loginLight.png" />
 </div>
 
 - Dashboard
 <div>
-  <img width="415" src="./assets/dashboardDark1.png" />
-  <img width="415" src="./assets/dashboardLight1.png" />
+  <img width="400" src="./assets/dashboardDark1.png" />
+  <img width="400" src="./assets/dashboardLight1.png" />
 </div>
 <div>
-  <img width="415" src="./assets/dashboardDark2.png" />
-  <img width="415" src="./assets/dashboardLight2.png" />
+  <img width="400" src="./assets/dashboardDark2.png" />
+  <img width="400" src="./assets/dashboardLight2.png" />
 </div>
 
 - Entradas/Saídas
 <div>
-  <img width="415" src="./assets/entradasDark.png" />
-  <img width="415" src="./assets/entradasLight.png" />
+  <img width="400" src="./assets/entradasDark.png" />
+  <img width="400" src="./assets/entradasLight.png" />
 </div>
 <div>
-  <img width="415" src="./assets/saidasDark.png" />
-  <img width="415" src="./assets/saidasLight.png" />
+  <img width="400" src="./assets/saidasDark.png" />
+  <img width="400" src="./assets/saidasLight.png" />
 </div>
 
 <div align="center">
