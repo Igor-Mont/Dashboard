@@ -13,6 +13,7 @@ const animate = keyframes`
     opacity: 1;
   }
 `;
+
 type LegendProps = {
   color: string;
 }
